@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      args:
+        user: robinson
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: robinson4k/laravel-app
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www/
+    restart: unless-stopped
+    networks:
+      - docker-laravel
+
+networks:
+  docker-laravel:
+    driver: bridge
